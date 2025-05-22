@@ -1,0 +1,14 @@
+/home/damian/uczelnia/c#/blackjack/blackjack/bin/Debug/net9.0/blackjack
+/home/damian/uczelnia/c#/blackjack/blackjack/bin/Debug/net9.0/blackjack.deps.json
+/home/damian/uczelnia/c#/blackjack/blackjack/bin/Debug/net9.0/blackjack.runtimeconfig.json
+/home/damian/uczelnia/c#/blackjack/blackjack/bin/Debug/net9.0/blackjack.dll
+/home/damian/uczelnia/c#/blackjack/blackjack/bin/Debug/net9.0/blackjack.pdb
+/home/damian/uczelnia/c#/blackjack/blackjack/obj/Debug/net9.0/blackjack.GeneratedMSBuildEditorConfig.editorconfig
+/home/damian/uczelnia/c#/blackjack/blackjack/obj/Debug/net9.0/blackjack.AssemblyInfoInputs.cache
+/home/damian/uczelnia/c#/blackjack/blackjack/obj/Debug/net9.0/blackjack.AssemblyInfo.cs
+/home/damian/uczelnia/c#/blackjack/blackjack/obj/Debug/net9.0/blackjack.csproj.CoreCompileInputs.cache
+/home/damian/uczelnia/c#/blackjack/blackjack/obj/Debug/net9.0/blackjack.dll
+/home/damian/uczelnia/c#/blackjack/blackjack/obj/Debug/net9.0/refint/blackjack.dll
+/home/damian/uczelnia/c#/blackjack/blackjack/obj/Debug/net9.0/blackjack.pdb
+/home/damian/uczelnia/c#/blackjack/blackjack/obj/Debug/net9.0/blackjack.genruntimeconfig.cache
+/home/damian/uczelnia/c#/blackjack/blackjack/obj/Debug/net9.0/ref/blackjack.dll

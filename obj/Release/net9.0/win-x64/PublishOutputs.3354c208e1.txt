@@ -1,0 +1,5 @@
+/home/damian/uczelnia/c#/blackjack/blackjack/bin/Release/net9.0/win-x64/publish/blackjack.exe
+/home/damian/uczelnia/c#/blackjack/blackjack/bin/Release/net9.0/win-x64/publish/blackjack.dll
+/home/damian/uczelnia/c#/blackjack/blackjack/bin/Release/net9.0/win-x64/publish/blackjack.deps.json
+/home/damian/uczelnia/c#/blackjack/blackjack/bin/Release/net9.0/win-x64/publish/blackjack.runtimeconfig.json
+/home/damian/uczelnia/c#/blackjack/blackjack/bin/Release/net9.0/win-x64/publish/blackjack.pdb

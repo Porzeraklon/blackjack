@@ -1,0 +1,14 @@
+/home/damian/uczelnia/c#/blackjack/blackjack/bin/Release/net9.0/win-x64/blackjack.exe
+/home/damian/uczelnia/c#/blackjack/blackjack/bin/Release/net9.0/win-x64/blackjack.deps.json
+/home/damian/uczelnia/c#/blackjack/blackjack/bin/Release/net9.0/win-x64/blackjack.runtimeconfig.json
+/home/damian/uczelnia/c#/blackjack/blackjack/bin/Release/net9.0/win-x64/blackjack.dll
+/home/damian/uczelnia/c#/blackjack/blackjack/bin/Release/net9.0/win-x64/blackjack.pdb
+/home/damian/uczelnia/c#/blackjack/blackjack/obj/Release/net9.0/win-x64/blackjack.GeneratedMSBuildEditorConfig.editorconfig
+/home/damian/uczelnia/c#/blackjack/blackjack/obj/Release/net9.0/win-x64/blackjack.AssemblyInfoInputs.cache
+/home/damian/uczelnia/c#/blackjack/blackjack/obj/Release/net9.0/win-x64/blackjack.AssemblyInfo.cs
+/home/damian/uczelnia/c#/blackjack/blackjack/obj/Release/net9.0/win-x64/blackjack.csproj.CoreCompileInputs.cache
+/home/damian/uczelnia/c#/blackjack/blackjack/obj/Release/net9.0/win-x64/blackjack.dll
+/home/damian/uczelnia/c#/blackjack/blackjack/obj/Release/net9.0/win-x64/refint/blackjack.dll
+/home/damian/uczelnia/c#/blackjack/blackjack/obj/Release/net9.0/win-x64/blackjack.pdb
+/home/damian/uczelnia/c#/blackjack/blackjack/obj/Release/net9.0/win-x64/blackjack.genruntimeconfig.cache
+/home/damian/uczelnia/c#/blackjack/blackjack/obj/Release/net9.0/win-x64/ref/blackjack.dll
