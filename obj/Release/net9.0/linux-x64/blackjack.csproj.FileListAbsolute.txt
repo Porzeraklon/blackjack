@@ -197,3 +197,4 @@
 /home/damian/uczelnia/c#/blackjack/blackjack/obj/Release/net9.0/linux-x64/blackjack.pdb
 /home/damian/uczelnia/c#/blackjack/blackjack/obj/Release/net9.0/linux-x64/blackjack.genruntimeconfig.cache
 /home/damian/uczelnia/c#/blackjack/blackjack/obj/Release/net9.0/linux-x64/ref/blackjack.dll
+/home/damian/uczelnia/c#/blackjack/blackjack/obj/Release/net9.0/linux-x64/blackjack.sourcelink.json

@@ -107,7 +107,7 @@ namespace Blackjack
                     Console.WriteLine("Co robisz? (hit/pass)");
                     string akcja = Console.ReadLine() ?? "";
 
-                    if (akcja == "hit")
+                    if (akcja == "hit" || akcja == "h")
                     {
                         Console.Clear();
                         karty_gracz.Add(talia[nastepna_w_talii]);
@@ -130,7 +130,7 @@ namespace Blackjack
                             break;
                         }
                     }
-                    else if (akcja == "pass")
+                    else if (akcja == "pass" || akcja == "p")
                     {
                         Thread.Sleep(1000);
                         Console.Clear();
