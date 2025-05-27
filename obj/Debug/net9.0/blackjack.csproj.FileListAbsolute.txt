@@ -12,3 +12,4 @@
 /home/damian/uczelnia/c#/blackjack/blackjack/obj/Debug/net9.0/blackjack.pdb
 /home/damian/uczelnia/c#/blackjack/blackjack/obj/Debug/net9.0/blackjack.genruntimeconfig.cache
 /home/damian/uczelnia/c#/blackjack/blackjack/obj/Debug/net9.0/ref/blackjack.dll
+/home/damian/uczelnia/c#/blackjack/blackjack/obj/Debug/net9.0/blackjack.sourcelink.json
