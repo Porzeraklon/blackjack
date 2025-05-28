@@ -2,6 +2,35 @@ namespace Blackjack.Karty
 {
     public static class Karta
     {
+        // Title card
+        public static void TitleCard()
+        {
+            Console.Clear();
+            List<string> title = new List<string>
+            {
+                "  ____  _            _        _            _       _____ _      _____",
+                " |  _ \\| |          | |      | |          | |     / ____| |    |_   _|",
+                " | |_) | | __ _  ___| | __   | | __ _  ___| | __ | |    | |      | |  ",
+                " |  _ <| |/ _` |/ __| |/ /   | |/ _` |/ __| |/ / | |    | |      | |  ",
+                " | |_) | | (_| | (__|   < |__| | (_| | (__|   <  | |____| |____ _| |_ ",
+                " |____/|_|⧹__,_|\\___|_|\\_\\____/ \\__,_|\\___|_|\\_\\  \\_____|______|_____|",
+                "",
+                "                          ┌───────┐┌───────┐",
+                "                          │AS     ││10     │",
+                "                          │       ││       │",
+                "                          │   ♥   ││   ♥   │",
+                "                          │       ││       │",
+                "                          │     AS││     10│",
+                "                          └───────┘└───────┘",
+                "                        Press any key to start"
+            };
+
+            foreach (string line in title)
+            {
+                Console.WriteLine(line);
+            }
+        }
+
         // Wzorzec talii kart
         public static List<string> WypelnijWzorzec()
         {

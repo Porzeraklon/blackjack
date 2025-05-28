@@ -7,6 +7,10 @@ namespace Blackjack
         public static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+            Karta.TitleCard();
+            Console.ReadKey();
+
             double saldo = 1000;
             if (args.Length > 0) double.TryParse(args[0], out saldo);
 
