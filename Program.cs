@@ -306,14 +306,15 @@ namespace Blackjack
                         double_down = false;
                         break;
                     }
-
+                    
+                    // Obsługa niepoprawnej komendy
                     else
                     {
                         if ((akcja == "double down" || akcja == "double" || akcja == "dd") && saldo < stawka * 2)
                             Console.WriteLine("Nie stać cię na double down!");
-                        else 
+                        else
                             Console.WriteLine("Nie rozpoznano polecenia. Wpisz 'hit', 'pass' lub 'double down'.");
-                        // Obsługa niepoprawnej komendy
+
                         Thread.Sleep(1000);
                         Console.Clear();
                         Console.WriteLine($"Stawka: {stawka}");
