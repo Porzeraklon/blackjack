@@ -19,7 +19,7 @@ namespace Blackjack
             if (args.Length > 1) int.TryParse(args[1], out ilosc_talii);
             List<string> talia = new List<string>();
             for (int i = 0; i < ilosc_talii; i++) talia.AddRange(wzorzec);
-            //Karta.Tasuj(talia);
+            Karta.Tasuj(talia);
 
             // Graficzna reprezentacja zakrytej karty
             List<string> rewers = Karta.RysujRewers();
@@ -157,7 +157,9 @@ namespace Blackjack
                             break;
                         }
                     }
-                    
+
+                    else if (akcja == "pass" || akcja == "p") break;
+
                     else
                     {
                         // Obsługa niepoprawnej komendy
