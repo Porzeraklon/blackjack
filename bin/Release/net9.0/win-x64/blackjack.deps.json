@@ -697,49 +697,49 @@
         },
         "native": {
           "Microsoft.DiaSymReader.Native.amd64.dll": {
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "14.42.34436.0"
           },
           "System.IO.Compression.Native.dll": {
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "9.0.525.21509"
           },
           "clretwrc.dll": {
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "9.0.525.21509"
           },
           "clrgc.dll": {
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "9.0.525.21509"
           },
           "clrgcexp.dll": {
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "9.0.525.21509"
           },
           "clrjit.dll": {
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "9.0.525.21509"
           },
           "coreclr.dll": {
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "9.0.525.21509"
           },
           "createdump.exe": {
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "9.0.525.21509"
           },
           "hostfxr.dll": {
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "9.0.525.21509"
           },
           "hostpolicy.dll": {
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "9.0.525.21509"
           },
           "mscordaccore.dll": {
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "9.0.525.21509"
           },
           "mscordaccore_amd64_amd64_9.0.525.21509.dll": {
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "9.0.525.21509"
           },
           "mscordbi.dll": {
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "9.0.525.21509"
           },
           "mscorrc.dll": {
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "9.0.525.21509"
           },
           "msquic.dll": {
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "2.4.8.0"
           }
         }
       },
@@ -760,7 +760,7 @@
     "Microsoft.NET.ILLink.Tasks/9.0.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-n3RTvvq34j0EKVD4DB1h2ODosWFunxmPQHM8hhgdqxIuu7p6TXurMUjT229IwgFMtCI9CxIGcVP+rPsIHz6I3w==",
+      "sha512": "sha512-4L7wbb3Y4BJgIeSnmAf/C6S/qCs9rT1b0dX72uj3qo0qvUH7D0U1tU5ZlC7A3Wb8E/dXK4caOi4JkdLTVJaXhw==",
       "path": "microsoft.net.illink.tasks/9.0.5",
       "hashPath": "microsoft.net.illink.tasks.9.0.5.nupkg.sha512"
     }

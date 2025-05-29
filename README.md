@@ -2,6 +2,28 @@
 
 BlackJack CLI is a lightweight, terminal-based implementation of the classic Blackjack card game written in C#. It features a human player vs dealer, optional card counting bot, and full game logic including split, double down, and insurance.
 
+## 📸 Gameplay Preview
+
+<p align="center">
+  <img src="assets/screenshots/title_screen.png" width="600"/>
+  <br><em>Start screen</em>
+</p>
+
+<p align="center">
+  <img src="assets/screenshots/betting_screen.png" width="600"/>
+  <br><em>Place your bet</em>
+</p>
+
+<p align="center">
+  <img src="assets/screenshots/example_round.png" width="600"/>
+  <br><em>Example round</em>
+</p>
+
+<p align="center">
+  <img src="assets/screenshots/dealers_blackjack.png" width="600"/>
+  <br><em>Dealer hits Blackjack</em>
+</p>
+
 ## 🎯 Features
 
 - Play classic Blackjack in your terminal (CLI)
@@ -10,6 +32,16 @@ BlackJack CLI is a lightweight, terminal-based implementation of the classic Bla
 - Optimal for card-counting
 - Cross-platform: Windows, Linux, macOS
 - Self-contained builds (no .NET installation required)
+
+## ⌨️ Controls
+
+You can type the full command or just the first letter:
+
+- `Hit` → `h`
+- `Stand` → `s`
+- `Double Down` → `dd`
+
+To exit the game: `Ctrl+C`
 
 ## 🔽 Downloads (Self-contained builds)
 

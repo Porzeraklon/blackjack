@@ -170,18 +170,18 @@ namespace Blackjack
                     Thread.Sleep(1500);
                 }
 
-                // Main hit/pass loop
+                // Main hit/stand loop
                 while (sum_player <= 21)
                 {
                     // Displaying different message depending on ability to double down
                     if (!blackjackPlayer && balance >= bet * 2)
                     {
-                        Console.WriteLine("What do you do? (hit / pass / double down)");
+                        Console.WriteLine("What do you do? (hit / stand / double down)");
                         action = Console.ReadLine() ?? "";
                     }
                     else if (!blackjackPlayer)
                     {
-                        Console.WriteLine("What do you do? (hit / pass)");
+                        Console.WriteLine("What do you do? (hit / stand)");
                         action = Console.ReadLine() ?? "";
                     }
 
@@ -214,7 +214,7 @@ namespace Blackjack
                         Card.DrawCards(drawablePlayerCards);
                         Console.WriteLine(sum_player);
 
-                        // Checking for exceeding 21 and breaking main hit/pass loop if so
+                        // Checking for exceeding 21 and breaking main hit/stand loop if so
                         if (sum_player > 21)
                         {
                             Console.WriteLine($"You lose {bet}.");
@@ -246,7 +246,7 @@ namespace Blackjack
                         Card.DrawCards(drawablePlayerCards);
                         Console.WriteLine(sum_player);
 
-                        // Checking for exceeding 21 and breaking main hit/pass loop if so
+                        // Checking for exceeding 21 and breaking main hit/stand loop if so
                         if (sum_player > 21)
                         {
                             Console.WriteLine($"You lose {bet}.");
@@ -254,8 +254,8 @@ namespace Blackjack
                         }
                     }
 
-                    // Pass, blackjack or double down procedure
-                    else if (action == "pass" || action == "p" || blackjackPlayer || doubleDown)
+                    // Stand, blackjack or double down procedure
+                    else if (action == "stand" || action == "s" || blackjackPlayer || doubleDown)
                     {
                         // Clearing console and revealing Dealer's second card
                         Thread.Sleep(1000);
@@ -359,7 +359,7 @@ namespace Blackjack
                         if ((action == "double down" || action == "double" || action == "dd") && balance < bet * 2)
                             Console.WriteLine("You can't afford to double down.");
                         else
-                            Console.WriteLine("Incorrect action. Type 'hit', 'pass', or 'double down'.");
+                            Console.WriteLine("Incorrect action. Type 'hit', 'stand', or 'double down'.");
 
                         // Clearing console and writing all hands
                         Thread.Sleep(1000);
