@@ -14,13 +14,13 @@ BlackJack CLI is a lightweight, terminal-based implementation of the classic Bla
 ## 🔽 Downloads (Self-contained builds)
 
 - 🪟 **Windows x64**  
-  [➡ Download ZIP](https://github.com/Porzeraklon/blackjack/releases/download/windows/BlackJackCLI-win-x64.zip)
+  [➡ Download ZIP](https://github.com/Porzeraklon/blackjack/releases/latest/download/BlackJackCLI-win-x64.tar.xz)
 
 - 🐧 **Linux x64**  
-  [➡ Download TAR.GZ](https://github.com/porzeraklon/blackjack/releases/download/BlackJackCLI-linux-x64.tar.xz)
+  [➡ Download TAR.GZ](https://github.com/Porzeraklon/blackjack/releases/latest/download/BlackJackCLI-linux-x64.tar.xz)
 
 - 🍎 **macOS x64**  
-  [➡ Download TAR.GZ](https://github.com/porzeraklon/blackjack/releases/download/BlackJackCLI-osx-x64.tar.xz)
+  [➡ Download TAR.GZ](https://github.com/Porzeraklon/blackjack/releases/latest/download/BlackJackCLI-osx-x64.tar.xz)
 
 Unpack the archive and run the executable inside.
 
