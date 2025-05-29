@@ -14,7 +14,7 @@ BlackJack CLI is a lightweight, terminal-based implementation of the classic Bla
 ## 🔽 Downloads (Self-contained builds)
 
 - 🪟 **Windows x64**  
-  [➡ Download ZIP](https://github.com/Porzeraklon/blackjack/releases/latest/download/BlackJackCLI-win-x64.tar.xz)
+  [➡ Download ZIP](https://github.com/Porzeraklon/blackjack/releases/latest/download/BlackJackCLI-win-x64.zip)
 
 - 🐧 **Linux x64**  
   [➡ Download TAR.GZ](https://github.com/Porzeraklon/blackjack/releases/latest/download/BlackJackCLI-linux-x64.tar.xz)
