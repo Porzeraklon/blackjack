@@ -49,10 +49,10 @@ To exit the game: `Ctrl+C`
   [➡ Download ZIP](https://github.com/Porzeraklon/blackjack/releases/latest/download/BlackJackCLI-win-x64.zip)
 
 - 🐧 **Linux x64**  
-  [➡ Download TAR.GZ](https://github.com/Porzeraklon/blackjack/releases/latest/download/BlackJackCLI-linux-x64.tar.xz)
+  [➡ Download TAR.XZ](https://github.com/Porzeraklon/blackjack/releases/latest/download/BlackJackCLI-linux-x64.tar.xz)
 
 - 🍎 **macOS x64**  
-  [➡ Download TAR.GZ](https://github.com/Porzeraklon/blackjack/releases/latest/download/BlackJackCLI-osx-x64.tar.xz)
+  [➡ Download TAR.XZ](https://github.com/Porzeraklon/blackjack/releases/latest/download/BlackJackCLI-osx-x64.tar.xz)
 
 Unpack the archive and run the executable inside.
 

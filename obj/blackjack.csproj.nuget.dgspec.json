@@ -1,25 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Damian\\Documents\\C#\\blackjack\\blackjack.csproj": {}
+    "/home/damian/uczelnia/c#/blackjack/blackjack/blackjack.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Damian\\Documents\\C#\\blackjack\\blackjack.csproj": {
+    "/home/damian/uczelnia/c#/blackjack/blackjack/blackjack.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Damian\\Documents\\C#\\blackjack\\blackjack.csproj",
+        "projectUniqueName": "/home/damian/uczelnia/c#/blackjack/blackjack/blackjack.csproj",
         "projectName": "blackjack",
-        "projectPath": "C:\\Users\\Damian\\Documents\\C#\\blackjack\\blackjack.csproj",
-        "packagesPath": "C:\\Users\\Damian\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Damian\\Documents\\C#\\blackjack\\obj\\",
+        "projectPath": "/home/damian/uczelnia/c#/blackjack/blackjack/blackjack.csproj",
+        "packagesPath": "/home/damian/.nuget/packages/",
+        "outputPath": "/home/damian/uczelnia/c#/blackjack/blackjack/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Damian\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/damian/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "/usr/lib/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,7 +39,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net9.0": {
@@ -81,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.106/PortableRuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
