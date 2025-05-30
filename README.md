@@ -29,7 +29,7 @@ BlackJack CLI is a lightweight, terminal-based implementation of the classic Bla
 - Play classic Blackjack in your terminal (CLI)
 - Support for doubling, splitting, and insurance
 - Dealer AI and full player decision handling
-- Optimal for card-counting
+- Optimal for card-counting (counter enabled by default)
 - Cross-platform: Windows, Linux, macOS
 - Self-contained builds (no .NET installation required)
 
@@ -40,6 +40,9 @@ You can type the full command or just the first letter:
 - `Hit` → `h`
 - `Stand` → `s`
 - `Double Down` → `dd`
+
+To turn off card counter type "--count" while running in terminal
+To turn off card sums type "--sums" while running in terminal
 
 To exit the game: `Ctrl+C`
 
