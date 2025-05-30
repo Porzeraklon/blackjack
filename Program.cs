@@ -247,6 +247,7 @@ namespace Blackjack
                         if (sumPlayer > 21)
                         {
                             Card.RevealDealer(dealerHidden, drawableDealer, dealerCards, sumDealer);
+                            dealerHidden = false;
 
                             runningCount = Card.CountDealerCards(runningCount, dealerCards, dealerHidden, nextDealer);
                             trueCount = runningCount / ((numOfDecks * 52 - cardsDealt) / 52.0);
@@ -278,6 +279,7 @@ namespace Blackjack
                         if (sumPlayer > 21)
                         {
                             Card.RevealDealer(dealerHidden, drawableDealer, dealerCards, sumDealer);
+                            dealerHidden = false;
 
                             runningCount = Card.CountDealerCards(runningCount, dealerCards, dealerHidden, nextDealer);
                             trueCount = runningCount / ((numOfDecks * 52 - cardsDealt) / 52.0);
@@ -293,6 +295,7 @@ namespace Blackjack
                     {
                         // Clearing console and revealing Dealer's second card
                         Card.RevealDealer(dealerHidden, drawableDealer, dealerCards, sumDealer);
+                        dealerHidden = false;
                         
                         // Counting cards and updating true count
                         runningCount = Card.CountDealerCards(runningCount, dealerCards, dealerHidden, nextDealer);
