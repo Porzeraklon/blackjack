@@ -64,7 +64,7 @@ namespace Blackjack
             double trueCount = 0;
 
             // Creating variables tracing blackjacks and double down
-            bool blackjackPlayer =false, blackjackDealer = false, doubleDown = false;
+            bool blackjackPlayer = false, blackjackDealer = false, doubleDown = false, doubleDownPossible = false;
             string action = "";
 
             // Main game loop
@@ -160,6 +160,7 @@ namespace Blackjack
                 nextDealer = 2;
                 bool dealerHidden = true;
                 cardsDealt += 4;
+                if ((bet * 2) / 2 >= balance) doubleDownPossible = true;
 
                 // Changing running count
                 runningCount = Card.CountPlayerCards(runningCount, playerCards, nextPlayer);
@@ -210,7 +211,7 @@ namespace Blackjack
                 while (sumPlayer <= 21)
                 {
                     // Displaying different message depending on ability to double down
-                    if (!blackjackPlayer && balance >= bet * 2)
+                    if (!blackjackPlayer && doubleDownPossible)
                     {
                         Console.WriteLine("What do you do? (hit / stand / double down)");
                         action = Console.ReadLine() ?? "";
@@ -222,7 +223,7 @@ namespace Blackjack
                     }
 
                     // Double down procedure
-                    if ((action == "double down" || action == "double" || action == "dd") && balance >= bet * 2)
+                    if ((action == "double down" || action == "double" || action == "dd") && doubleDownPossible)
                     {
                         // Setting double down variable to true, increasing bet, and subtracting it from balance
                         doubleDown = true;
@@ -261,8 +262,9 @@ namespace Blackjack
                     // Hit procedure
                     if (action == "hit" || action == "h")
                     {
-                        // Clearing console, giving player his card and drawing all hands
+                        // Clearing console, setting double down possibility to false and giving player his card and drawing all hands
                         Console.Clear();
+                        doubleDownPossible = false;
 
                         playerCards.Add(deck[nextInDeck]);
                         nextInDeck++;
