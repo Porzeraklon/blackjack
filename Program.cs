@@ -25,6 +25,13 @@ namespace Blackjack
             // Ensuring correct encoding is being used
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
+            // Creating setting variables
+            bool showSums = true; // option to show sums of hands
+            bool showHiLo = true; // option to show card counting tracker
+
+            // Checking for user settings
+            Card.gameSettings(args, ref showSums, ref showHiLo);
+
             // Displaying title card
             Card.TitleCard();
             Console.ReadKey();
@@ -39,7 +46,8 @@ namespace Blackjack
             // Generating and shuffling shoe
             int numOfDecks = 6;
             List<string> deck = new List<string>();
-            for (int i = 0; i < numOfDecks; i++) deck.AddRange(deckPattern);
+            for (int i = 0; i < numOfDecks; i++)
+                deck.AddRange(deckPattern);
             Card.Shuffle(deck);
 
             // Generating image of card back
@@ -48,11 +56,12 @@ namespace Blackjack
             // Creating lists for cards and their graphic equivalents
             List<string> playerCards = new List<string>();
             List<string> dealerCards = new List<string>();
-            List<string> drawablePlayerCards = new List<string>();
-            List<string> drawableDealerCards = new List<string>();
+            List<string> drawablePlayer = new List<string>();
+            List<string> drawableDealer = new List<string>();
 
             // Creating variables tracing deck state
-            int nextInDeck = 0, nextPlayer = 0, nextDealer = 0;
+            int nextInDeck = 0, nextPlayer = 0, nextDealer = 0, cardsDealt = 0, runningCount = 0, trueCountRounded = 0;
+            double trueCount = 0;
 
             // Creating variables tracing blackjacks and double down
             bool blackjackPlayer =false, blackjackDealer = false, doubleDown = false;
@@ -63,6 +72,21 @@ namespace Blackjack
             {
                 // Clearing console for better immersion
                 Console.Clear();
+
+                // Checking for deck penetration and shuffling
+                if (nextInDeck >= (int)(0.75 * numOfDecks * 52))
+                {
+                    Console.WriteLine("Shuffling cards please wait.");
+                    Thread.Sleep(3000);
+                    Card.Shuffle(deck);
+                    nextInDeck = 0;
+                    cardsDealt = 0;
+                    runningCount = 0;
+                    trueCount = 0;
+                    Console.WriteLine("Cards have been shuffled, game will continue");
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                }
 
                 // Creating variable for player's bet
                 double bet = 0;
@@ -111,24 +135,17 @@ namespace Blackjack
                 // Resetting all lists
                 dealerCards.Clear();
                 playerCards.Clear();
-                drawableDealerCards.Clear();
-                drawablePlayerCards.Clear();
+                drawableDealer.Clear();
+                drawablePlayer.Clear();
 
                 for (int i = 0; i < 7; i++)
                 {
-                    drawableDealerCards.Add("");
-                    drawablePlayerCards.Add("");
-                }
-
-                // Checking for deck penetration
-                if (nextInDeck >= (int)(0.75 * numOfDecks * 52))
-                {
-                    Card.Shuffle(deck);
-                    nextInDeck = 0;
+                    drawableDealer.Add("");
+                    drawablePlayer.Add("");
                 }
 
                 // Dealing starting cards
-                int sum_player = 0, sum_dealer = 0;
+                int sumPlayer = 0, sumDealer = 0;
                 for (int i = 0; i < 4; i++)
                 {
                     if (i == 0) playerCards.Add(deck[nextInDeck]);
@@ -141,29 +158,48 @@ namespace Blackjack
                 nextInDeck += 4;
                 nextPlayer = 2;
                 nextDealer = 2;
+                bool dealerHidden = true;
+                cardsDealt += 4;
+
+                // Changing running count
+                runningCount = Card.CountPlayerCards(runningCount, playerCards, nextPlayer);
+                runningCount = Card.CountDealerCards(runningCount, dealerCards, dealerHidden, nextDealer);
+
+                // Changing true count
+                trueCount = runningCount / ((numOfDecks * 52 - cardsDealt) / 52.0);
+                trueCountRounded = (int)trueCount;
 
                 // Displaying starting cards, and calculating value of hands
                 Console.Clear();
+
+                if (showHiLo)
+                {
+                    Console.WriteLine($"Current Hi-Lo true count: {trueCountRounded}");
+                    Console.WriteLine($"Current Hi-Lo running count: {runningCount}");
+                    Console.WriteLine();
+                }
+
                 Console.WriteLine($"Bet: {bet}");
                 Console.WriteLine();
 
-                sum_dealer = Card.SumCards(dealerCards);
+                sumDealer = Card.SumCards(dealerCards);
                 Console.WriteLine("Dealer's cards:");
-                Card.MergeCards(drawableDealerCards, Card.GenerateCard(dealerCards[0]));
-                Card.MergeCards(drawableDealerCards, cardBack);
-                Card.DrawCards(drawableDealerCards);
+                Card.MergeCards(drawableDealer, Card.GenerateCard(dealerCards[0]));
+                Card.MergeCards(drawableDealer, cardBack);
+                Card.DrawCards(drawableDealer);
 
                 Console.WriteLine();
 
-                sum_player = Card.SumCards(playerCards);
+                sumPlayer = Card.SumCards(playerCards);
                 Console.WriteLine("Player's cards:");
-                Card.MergeCards(drawablePlayerCards, Card.GenerateCard(playerCards[0]));
-                Card.MergeCards(drawablePlayerCards, Card.GenerateCard(playerCards[1]));
-                Card.DrawCards(drawablePlayerCards);
-                Console.WriteLine(sum_player);
+                Card.MergeCards(drawablePlayer, Card.GenerateCard(playerCards[0]));
+                Card.MergeCards(drawablePlayer, Card.GenerateCard(playerCards[1]));
+                Card.DrawCards(drawablePlayer);
+                if (showSums) Console.WriteLine(sumPlayer);
+
 
                 // Checking for player's blackjack
-                if (sum_player == 21)
+                if (sumPlayer == 21)
                 {
                     Console.WriteLine($"Player got Blackjack!");
                     blackjackPlayer = true;
@@ -171,7 +207,7 @@ namespace Blackjack
                 }
 
                 // Main hit/stand loop
-                while (sum_player <= 21)
+                while (sumPlayer <= 21)
                 {
                     // Displaying different message depending on ability to double down
                     if (!blackjackPlayer && balance >= bet * 2)
@@ -198,25 +234,24 @@ namespace Blackjack
 
                         playerCards.Add(deck[nextInDeck]);
                         nextInDeck++;
-                        Card.MergeCards(drawablePlayerCards, Card.GenerateCard(playerCards[nextPlayer]));
+                        Card.MergeCards(drawablePlayer, Card.GenerateCard(playerCards[nextPlayer]));
                         nextPlayer++;
-                        sum_player = Card.SumCards(playerCards);
+                        sumPlayer = Card.SumCards(playerCards);
 
-                        Console.WriteLine($"Bet: {bet}");
-                        Console.WriteLine();
+                        runningCount = Card.CountPlayerCards(runningCount, playerCards, nextPlayer);
+                        trueCount = runningCount / ((numOfDecks * 52 - cardsDealt) / 52.0);
 
-                        Console.WriteLine("Dealer's cards:");
-                        Card.DrawCards(drawableDealerCards);
+                        Card.DrawHands(bet, drawableDealer, drawablePlayer, sumDealer, sumPlayer, dealerHidden, showSums, showHiLo, trueCountRounded, runningCount);
 
-                        Console.WriteLine();
-
-                        Console.WriteLine("Player's cards:");
-                        Card.DrawCards(drawablePlayerCards);
-                        Console.WriteLine(sum_player);
-
-                        // Checking for exceeding 21 and breaking main hit/stand loop if so
-                        if (sum_player > 21)
+                        // Checking for exceeding 21 revealing Dealer's second card and breaking main hit/stand loop
+                        if (sumPlayer > 21)
                         {
+                            Card.RevealDealer(dealerHidden, drawableDealer, dealerCards, sumDealer);
+
+                            runningCount = Card.CountDealerCards(runningCount, dealerCards, dealerHidden, nextDealer);
+                            trueCount = runningCount / ((numOfDecks * 52 - cardsDealt) / 52.0);
+
+                            Card.DrawHands(bet, drawableDealer, drawablePlayer, sumDealer, sumPlayer, dealerHidden, showSums, showHiLo, trueCountRounded, runningCount);
                             Console.WriteLine($"You lose {bet}.");
                             break;
                         }
@@ -230,25 +265,24 @@ namespace Blackjack
 
                         playerCards.Add(deck[nextInDeck]);
                         nextInDeck++;
-                        Card.MergeCards(drawablePlayerCards, Card.GenerateCard(playerCards[nextPlayer]));
+                        Card.MergeCards(drawablePlayer, Card.GenerateCard(playerCards[nextPlayer]));
                         nextPlayer++;
-                        sum_player = Card.SumCards(playerCards);
+                        sumPlayer = Card.SumCards(playerCards);
 
-                        Console.WriteLine($"Bet: {bet}");
-                        Console.WriteLine();
+                        runningCount = Card.CountPlayerCards(runningCount, playerCards, nextPlayer);
+                        trueCount = runningCount / ((numOfDecks * 52 - cardsDealt) / 52.0);
 
-                        Console.WriteLine("Dealer's cards:");
-                        Card.DrawCards(drawableDealerCards);
+                        Card.DrawHands(bet, drawableDealer, drawablePlayer, sumDealer, sumPlayer, dealerHidden, showSums, showHiLo, trueCountRounded, runningCount);
 
-                        Console.WriteLine();
-
-                        Console.WriteLine("Player's cards:");
-                        Card.DrawCards(drawablePlayerCards);
-                        Console.WriteLine(sum_player);
-
-                        // Checking for exceeding 21 and breaking main hit/stand loop if so
-                        if (sum_player > 21)
+                        // Checking for exceeding 21 revealing Dealer's second card and breaking main hit/stand loop
+                        if (sumPlayer > 21)
                         {
+                            Card.RevealDealer(dealerHidden, drawableDealer, dealerCards, sumDealer);
+
+                            runningCount = Card.CountDealerCards(runningCount, dealerCards, dealerHidden, nextDealer);
+                            trueCount = runningCount / ((numOfDecks * 52 - cardsDealt) / 52.0);
+
+                            Card.DrawHands(bet, drawableDealer, drawablePlayer, sumDealer, sumPlayer, dealerHidden, showSums, showHiLo, trueCountRounded, runningCount);
                             Console.WriteLine($"You lose {bet}.");
                             break;
                         }
@@ -258,56 +292,35 @@ namespace Blackjack
                     else if (action == "stand" || action == "s" || blackjackPlayer || doubleDown)
                     {
                         // Clearing console and revealing Dealer's second card
-                        Thread.Sleep(1000);
-                        Console.Clear();
-                        drawableDealerCards.Clear();
-                        for (int i = 0; i < 7; i++) drawableDealerCards.Add("");
-                        Card.MergeCards(drawableDealerCards, Card.GenerateCard(dealerCards[0]));
-                        Card.MergeCards(drawableDealerCards, Card.GenerateCard(dealerCards[1]));
-                        sum_dealer = Card.SumCards(dealerCards);
+                        Card.RevealDealer(dealerHidden, drawableDealer, dealerCards, sumDealer);
+                        
+                        // Counting cards and updating true count
+                        runningCount = Card.CountDealerCards(runningCount, dealerCards, dealerHidden, nextDealer);
+                        trueCount = runningCount / ((numOfDecks * 52 - cardsDealt) / 52.0);
 
                         // Drawing all hands
-                        Console.WriteLine($"Bet: {bet}");
-                        Console.WriteLine();
-
-                        Console.WriteLine("Dealer's cards:");
-                        Card.DrawCards(drawableDealerCards);
-                        Console.WriteLine(sum_dealer);
-
-                        Console.WriteLine();
-
-                        Console.WriteLine("Player's cards:");
-                        Card.DrawCards(drawablePlayerCards);
-                        Console.WriteLine(sum_player);
+                        Card.DrawHands(bet, drawableDealer, drawablePlayer, sumDealer, sumPlayer, dealerHidden, showSums, showHiLo, trueCountRounded, runningCount);
 
                         // Dealer's drawing loop
-                        while (sum_dealer < 17)
+                        while (sumDealer < 17)
                         {
                             // Sleep for better immersion, and clearing console before adding another card to Dealer's hand and drawing all hands
                             Thread.Sleep(1000);
                             Console.Clear();
                             dealerCards.Add(deck[nextInDeck]);
-                            Card.MergeCards(drawableDealerCards, Card.GenerateCard(dealerCards[nextDealer]));
+                            Card.MergeCards(drawableDealer, Card.GenerateCard(dealerCards[nextDealer]));
                             nextInDeck++;
                             nextDealer++;
-                            sum_dealer = Card.SumCards(dealerCards);
+                            sumDealer = Card.SumCards(dealerCards);
 
-                            Console.WriteLine($"Bet: {bet}");
-                            Console.WriteLine();
+                            runningCount = Card.CountDealerCards(runningCount, dealerCards, dealerHidden, nextDealer);
+                            trueCount = runningCount / ((numOfDecks * 52 - cardsDealt) / 52.0);
 
-                            Console.WriteLine("Dealer's cards:");
-                            Card.DrawCards(drawableDealerCards);
-                            Console.WriteLine(sum_dealer);
-
-                            Console.WriteLine();
-
-                            Console.WriteLine("Player's cards:");
-                            Card.DrawCards(drawablePlayerCards);
-                            Console.WriteLine(sum_player);
+                            Card.DrawHands(bet, drawableDealer, drawablePlayer, sumDealer, sumPlayer, dealerHidden, showSums, showHiLo, trueCountRounded, runningCount);
                         }
 
                         //Checking for Dealer's blackjack
-                        if (sum_dealer == 21 && dealerCards.Count == 2)
+                        if (sumDealer == 21 && dealerCards.Count == 2)
                         {
                             Console.WriteLine("Dealer got Blackjack!");
                             blackjackDealer = true;
@@ -334,13 +347,14 @@ namespace Blackjack
                             blackjackPlayer = false;
                         }
 
-                        else if (sum_dealer > 21 || sum_player > sum_dealer)
+                        else if (sumDealer > 21 || sumPlayer > sumDealer)
                         {
                             Console.WriteLine($"You win {bet * 2}!");
                             balance += bet * 2;
                         }
 
-                        else if (sum_player < sum_dealer) Console.WriteLine($"You lose {bet}.");
+                        else if
+                            (sumPlayer < sumDealer) Console.WriteLine($"You lose {bet}.");
 
                         else
                         {
@@ -364,17 +378,10 @@ namespace Blackjack
                         // Clearing console and writing all hands
                         Thread.Sleep(1000);
                         Console.Clear();
-                        Console.WriteLine($"Bet: {bet}");
-                        Console.WriteLine();
-                        Console.WriteLine("Dealer's cards:");
-                        Card.DrawCards(drawableDealerCards);
-                        Console.WriteLine();
-                        Console.WriteLine("Player's cards:");
-                        Card.DrawCards(drawablePlayerCards);
-                        Console.WriteLine(sum_player);
+                        Card.DrawHands(bet, drawableDealer, drawablePlayer, sumDealer, sumPlayer, dealerHidden, showSums, showHiLo, trueCountRounded, runningCount);
                     }
                 }
-                
+
                 // Checking whether the player can continue
                 if (balance > 0)
                 {

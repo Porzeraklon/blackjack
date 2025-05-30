@@ -2,6 +2,13 @@ namespace Blackjack.Cards
 {
     public static class Card
     {
+        // Settings interface
+        public static void gameSettings(string[] args, ref bool showSums, ref bool showHiLo)
+        {
+            if (args.Contains("--sums")) showSums = false;
+            if (args.Contains("--count")) showHiLo = false;
+        }
+
         // Title card
         public static void TitleCard()
         {
@@ -127,7 +134,7 @@ namespace Blackjack.Cards
                 Console.WriteLine(line);
             }
         }
-        
+
         // Card set worth calc
         public static int SumCards(List<string> card_list)
         {
@@ -159,6 +166,141 @@ namespace Blackjack.Cards
                 }
             }
             return sum;
+        }
+
+        // Revealing Dealer's second card
+        public static void RevealDealer(bool dealerHidden, List<string> drawableDealer, List<string> dealerCards, int sumDealer)
+        {
+            Thread.Sleep(1000);
+            Console.Clear();
+            dealerHidden = false;
+            drawableDealer.Clear();
+            for (int i = 0; i < 7; i++) drawableDealer.Add("");
+            Card.MergeCards(drawableDealer, Card.GenerateCard(dealerCards[0]));
+            Card.MergeCards(drawableDealer, Card.GenerateCard(dealerCards[1]));
+            sumDealer = Card.SumCards(dealerCards);
+        }
+
+        // Drawing Dealer's and Player's hand
+        public static void DrawHands(double bet, List<string> drawableDealer, List<string> drawablePlayer, int sumDealer, int sumPlayer, bool dealerHidden, bool showSums, bool showHiLo, int trueCountRounded, int runningCount)
+        {
+            if (showHiLo)
+            {
+                Console.WriteLine($"Current Hi-Lo true count: {trueCountRounded}");
+                Console.WriteLine($"Current Hi-Lo running count: {runningCount}");
+                Console.WriteLine();
+            }
+            Console.WriteLine($"Bet: {bet}");
+            Console.WriteLine();
+
+            Console.WriteLine("Dealer's cards:");
+            DrawCards(drawableDealer);
+            if (!dealerHidden && showSums)
+                Console.WriteLine(sumDealer);
+
+            Console.WriteLine();
+
+            Console.WriteLine("Player's cards:");
+            DrawCards(drawablePlayer);
+            if (showSums)
+                Console.WriteLine(sumPlayer);
+        }
+
+        // Counting Player's cards using Hi-Lo method
+        public static int CountPlayerCards(int runningCount, List<string> playerCards, int nextPlayer)
+        {
+            if (playerCards.Count() == 2)
+            {
+                foreach (string card in playerCards)
+                {
+                    switch (card[2])
+                    {
+                        case '2': runningCount += 1; break;
+                        case '3': runningCount += 1; break;
+                        case '4': runningCount += 1; break;
+                        case '5': runningCount += 1; break;
+                        case '6': runningCount += 1; break;
+                        case '0': runningCount -= 1; break;
+                        case 'P': runningCount -= 1; break;
+                        case 'N': runningCount -= 1; break;
+                        case 'G': runningCount -= 1; break;
+                        case 'S': runningCount -= 1; break;
+                    }
+                }
+            }
+            else
+            {
+                switch (playerCards[nextPlayer - 1][2])
+                {
+                    case '2': runningCount += 1; break;
+                    case '3': runningCount += 1; break;
+                    case '4': runningCount += 1; break;
+                    case '5': runningCount += 1; break;
+                    case '6': runningCount += 1; break;
+                    case '0': runningCount -= 1; break;
+                    case 'P': runningCount -= 1; break;
+                    case 'N': runningCount -= 1; break;
+                    case 'G': runningCount -= 1; break;
+                    case 'S': runningCount -= 1; break;
+                }
+            }
+
+            return runningCount;
+        }
+
+        // Counting Dealer's cards cards using Hi-Lo method
+        public static int CountDealerCards(int runningCount, List<string> dealerCards, bool dealerHidden, int nextDealer)
+        {
+            if (dealerHidden)
+            {
+                switch (dealerCards[0][2])
+                {
+                    case '2': runningCount += 1; break;
+                    case '3': runningCount += 1; break;
+                    case '4': runningCount += 1; break;
+                    case '5': runningCount += 1; break;
+                    case '6': runningCount += 1; break;
+                    case '0': runningCount -= 1; break;
+                    case 'P': runningCount -= 1; break;
+                    case 'N': runningCount -= 1; break;
+                    case 'G': runningCount -= 1; break;
+                    case 'S': runningCount -= 1; break;
+                }
+            }
+            else if (dealerCards.Count() == 2)
+            {
+                switch (dealerCards[1][2])
+                {
+                    case '2': runningCount += 1; break;
+                    case '3': runningCount += 1; break;
+                    case '4': runningCount += 1; break;
+                    case '5': runningCount += 1; break;
+                    case '6': runningCount += 1; break;
+                    case '0': runningCount -= 1; break;
+                    case 'P': runningCount -= 1; break;
+                    case 'N': runningCount -= 1; break;
+                    case 'G': runningCount -= 1; break;
+                    case 'S': runningCount -= 1; break;
+                }
+            }
+            else
+            {
+                switch (dealerCards[nextDealer - 1][2])
+                {
+                    case '2': runningCount += 1; break;
+                    case '3': runningCount += 1; break;
+                    case '4': runningCount += 1; break;
+                    case '5': runningCount += 1; break;
+                    case '6': runningCount += 1; break;
+                    case '0': runningCount -= 1; break;
+                    case 'P': runningCount -= 1; break;
+                    case 'N': runningCount -= 1; break;
+                    case 'G': runningCount -= 1; break;
+                    case 'S': runningCount -= 1; break;
+                }
+            }
+
+            return runningCount;
         }
     }
 }
