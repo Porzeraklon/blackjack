@@ -3,10 +3,11 @@ namespace Blackjack.Cards
     public static class Card
     {
         // Settings interface
-        public static void gameSettings(string[] args, ref bool showSums, ref bool showHiLo)
+        public static void gameSettings(string[] args, ref bool showSums, ref bool showHiLo, ref bool botPlayer)
         {
             if (args.Contains("--sums")) showSums = false;
             if (args.Contains("--count")) showHiLo = false;
+            if (args.Contains("--bot")) botPlayer = true;
         }
 
         // Title card
@@ -182,7 +183,7 @@ namespace Blackjack.Cards
         }
 
         // Drawing Dealer's and Player's hand
-        public static void DrawHands(double bet, List<string> drawableDealer, List<string> drawablePlayer, int sumDealer, int sumPlayer, bool dealerHidden, bool showSums, bool showHiLo, int trueCountRounded, int runningCount)
+        public static void DrawHands(double bet, List<string> drawableDealer, List<string> drawablePlayer, int sumDealer, int sumPlayer, bool dealerHidden, bool showSums, bool showHiLo, int trueCountRounded, int runningCount, double balance)
         {
             if (showHiLo)
             {
@@ -190,6 +191,7 @@ namespace Blackjack.Cards
                 Console.WriteLine($"Current Hi-Lo running count: {runningCount}");
                 Console.WriteLine();
             }
+            Console.WriteLine($"Balance: {balance}");
             Console.WriteLine($"Bet: {bet}");
             Console.WriteLine();
 
