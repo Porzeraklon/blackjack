@@ -3,11 +3,12 @@ namespace Blackjack.Cards
     public static class Card
     {
         // Settings interface
-        public static void gameSettings(string[] args, ref bool showSums, ref bool showHiLo, ref bool botPlayer)
+        public static void gameSettings(string[] args, ref bool showSums, ref bool showHiLo, ref bool botPlayer, ref bool testRun)
         {
             if (args.Contains("--sums")) showSums = false;
             if (args.Contains("--count")) showHiLo = false;
             if (args.Contains("--bot")) botPlayer = true;
+            if (args.Contains("--test")) testRun = true;
         }
 
         // Title card

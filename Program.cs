@@ -31,17 +31,33 @@ namespace Blackjack
             bool showSums = true; // option to show sums of hands
             bool showHiLo = true; // option to show card counting tracker
             bool botPlayer = false; // option to have bot play for you
+            bool testRun = false; // option for test run (shorter sleeps, no title screen)
+            int speed1 = 500, speed2 = 1000, speed3 = 1500, speed4 = 2000, speed5 = 3000;
+
 
             // Checking for user settings
-            Card.gameSettings(args, ref showSums, ref showHiLo, ref botPlayer);
+            Card.gameSettings(args, ref showSums, ref showHiLo, ref botPlayer, ref testRun);
 
             // Displaying title card
-            //Console.Clear();
-            //Card.TitleCard();
-            //Console.ReadKey();
+            if (!testRun)
+            {
+                Console.Clear();
+                Card.TitleCard();
+                Console.ReadKey();
+            }
+
+            // Changing speed
+            if (testRun)
+            {
+                speed1 = 100;
+                speed2 = 100;
+                speed3 = 100;
+                speed4 = 100;
+                speed5 = 100;
+            }
 
             // Creating starting balance
-            double balance = 1000;
+                double balance = 1000;
 
             // Creating deck pattern (4 suits 13 cards each)
             List<string> deckPattern = Card.FillDeckPattern();
@@ -81,14 +97,14 @@ namespace Blackjack
                 if (nextInDeck >= (int)(0.75 * numOfDecks * 52))
                 {
                     Console.WriteLine("Shuffling cards please wait.");
-                    Thread.Sleep(3000);
+                    Thread.Sleep(speed5);
                     Card.Shuffle(deck);
                     nextInDeck = 0;
                     cardsDealt = 0;
                     runningCount = 0;
                     trueCount = 0;
                     Console.WriteLine("Cards have been shuffled, game will continue");
-                    Thread.Sleep(2000);
+                    Thread.Sleep(speed4);
                     Console.Clear();
                 }
 
@@ -107,10 +123,10 @@ namespace Blackjack
                     if (botPlayer == false) input = Console.ReadLine() ?? "";
                     else
                     {
-                        Thread.Sleep(500);
+                        Thread.Sleep(speed1);
                         input = Bot.Bet(balance, trueCountRounded);
                         Console.WriteLine(input);
-                        Thread.Sleep(500);
+                        Thread.Sleep(speed1);
                     }
 
 
@@ -118,7 +134,7 @@ namespace Blackjack
                     if (!double.TryParse(input, out bet))
                     {
                         Console.WriteLine("It's not a valid number, try again.");
-                        Thread.Sleep(1000);
+                        Thread.Sleep(speed2);
                         Console.Clear();
                         continue;
                     }
@@ -126,7 +142,7 @@ namespace Blackjack
                     if (bet <= 0)
                     {
                         Console.WriteLine("Bet must be greater than zero. Please enter the valid amount");
-                        Thread.Sleep(1000);
+                        Thread.Sleep(speed2);
                         Console.Clear();
                         continue;
                     }
@@ -134,7 +150,7 @@ namespace Blackjack
                     if (bet > balance)
                     {
                         Console.WriteLine("Your balance is too low for that bet.");
-                        Thread.Sleep(1000);
+                        Thread.Sleep(speed2);
                         Console.Clear();
                         continue;
                     }
@@ -218,7 +234,7 @@ namespace Blackjack
                 {
                     Console.WriteLine($"Player got Blackjack!");
                     blackjackPlayer = true;
-                    Thread.Sleep(1500);
+                    Thread.Sleep(speed3);
                 }
 
                 // Main hit/stand loop
@@ -231,10 +247,10 @@ namespace Blackjack
                         if (botPlayer == false) action = Console.ReadLine() ?? "";
                         else
                         {
-                            Thread.Sleep(500);
+                            Thread.Sleep(speed1);
                             action = Bot.Decide(playerCards, sumPlayer, doubleDownPossible, trueCountRounded, dealerCards[0]) ?? "";
                             Console.WriteLine(action);
-                            Thread.Sleep(500);
+                            Thread.Sleep(speed1);
                         }
                     }
                     else if (!blackjackPlayer)
@@ -243,10 +259,10 @@ namespace Blackjack
                         if (botPlayer == false) action = Console.ReadLine() ?? "";
                         else
                         {
-                            Thread.Sleep(500);
+                            Thread.Sleep(speed1);
                             action = Bot.Decide(playerCards, sumPlayer, doubleDownPossible, trueCountRounded, dealerCards[0]);
                             Console.WriteLine(action);
-                            Thread.Sleep(500);
+                            Thread.Sleep(speed1);
                         }
                     }
 
@@ -338,7 +354,7 @@ namespace Blackjack
                         while (sumDealer < 17)
                         {
                             // Sleep for better immersion, and clearing console before adding another card to Dealer's hand and drawing all hands
-                            Thread.Sleep(1000);
+                            Thread.Sleep(speed2);
                             Console.Clear();
                             dealerCards.Add(deck[nextInDeck]);
                             Card.MergeCards(drawableDealer, Card.GenerateCard(dealerCards[nextDealer]));
@@ -357,7 +373,7 @@ namespace Blackjack
                         {
                             Console.WriteLine("Dealer got Blackjack!");
                             blackjackDealer = true;
-                            Thread.Sleep(1500);
+                            Thread.Sleep(speed3);
                         }
 
                         // Checking outcome of the game
@@ -395,7 +411,7 @@ namespace Blackjack
                             balance += bet;
                         }
 
-                        Thread.Sleep(1000);
+                        Thread.Sleep(speed2);
                         doubleDown = false;
                         break;
                     }
@@ -409,7 +425,7 @@ namespace Blackjack
                             Console.WriteLine("Incorrect action. Type 'hit', 'stand', or 'double down'.");
 
                         // Clearing console and writing all hands
-                        Thread.Sleep(1000);
+                        Thread.Sleep(speed2);
                         Console.Clear();
                         Card.DrawHands(bet, drawableDealer, drawablePlayer, sumDealer, sumPlayer, dealerHidden, showSums, showHiLo, trueCountRounded, runningCount, balance);
                     }
@@ -420,12 +436,12 @@ namespace Blackjack
                 {
                     Console.WriteLine("Cards will be dealt again in a moment.");
                     action = "";
-                    Thread.Sleep(2000);
+                    Thread.Sleep(speed4);
                 }
                 else
                 {
                     Console.WriteLine("You can't afford to keep playing. You will be escorted out.");
-                    Thread.Sleep(2000);
+                    Thread.Sleep(speed4);
                 }
             }
         }

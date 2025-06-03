@@ -38,12 +38,12 @@ namespace Blackjack.BotPlayer
                 else if (sumPlayer == 17) return "hit";
 
                 // Soft 18
-                if (sumPlayer == 18 && (dealerCard[2] == '2' || dealerCard[2] == '3' || dealerCard[2] == '4' || dealerCard[2] == '5' || dealerCard[2] == '6'))
+                if (sumPlayer == 18 && (dealerCard[2] == '4' || dealerCard[2] == '5' || dealerCard[2] == '6'))
                 {
                     if (doubleDownPossible) return "double down";
                     else return "stand";
                 }
-                else if (sumPlayer == 18 && (dealerCard[2] == '7' || dealerCard[2] == '8')) return "stand";
+                else if (sumPlayer == 18 && (dealerCard[2] == '2' || dealerCard[2] == '3' || dealerCard[2] == '7' || dealerCard[2] == '8')) return "stand";
                 else if (sumPlayer == 18) return "hit";
 
                 // Soft 19
@@ -67,7 +67,7 @@ namespace Blackjack.BotPlayer
                 if (sumPlayer == 8 && dealerCard[2] != '6') return "hit";
                 else if (sumPlayer == 8 && dealerCard[2] == '6')
                 {
-                    if (doubleDownPossible) return "double down";
+                    if (trueCountRounded >= 2 && doubleDownPossible) return "double down";
                     else return "hit";
                 }
 
@@ -177,12 +177,12 @@ namespace Blackjack.BotPlayer
         {
             switch (trueCountRounded)
             {
-                case >= 5: return (0.1 * balance).ToString("F0");
-                case >= 4: return (0.08 * balance).ToString("F0");
-                case >= 3: return (0.06 * balance).ToString("F0");
-                case >= 2: return (0.04 * balance).ToString("F0");
-                case >= 1: return (0.02 * balance).ToString("F0");
-                case <= 0: return "10";                             
+                case >= 5: return (0.18 * balance).ToString("F0");
+                case >= 4: return (0.14 * balance).ToString("F0");
+                case >= 3: return (0.10 * balance).ToString("F0");
+                case >= 2: return (0.06 * balance).ToString("F0");
+                case >= 1: return (0.03 * balance).ToString("F0");
+                case <= 0: return (0.01 * balance).ToString("F0");
             }
             ;
         }
