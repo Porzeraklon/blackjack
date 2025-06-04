@@ -175,14 +175,16 @@ namespace Blackjack.BotPlayer
 
         public static string Bet(double balance, int trueCountRounded)
         {
+            double baseBet = 10;
+            if (balance > 1000) baseBet = balance * 0.01;
             switch (trueCountRounded)
             {
-                case >= 5: return (0.18 * balance).ToString("F0");
-                case >= 4: return (0.14 * balance).ToString("F0");
-                case >= 3: return (0.10 * balance).ToString("F0");
-                case >= 2: return (0.06 * balance).ToString("F0");
-                case >= 1: return (0.03 * balance).ToString("F0");
-                case <= 0: return (0.01 * balance).ToString("F0");
+                case >= 5: return (8 * baseBet).ToString("F0");
+                case >= 4: return (6 * baseBet).ToString("F0");
+                case >= 3: return (4 * baseBet).ToString("F0");
+                case >= 2: return (2 * baseBet).ToString("F0");
+                case >= 1: return baseBet.ToString("F0");
+                case <= 0: return "10";
             }
             ;
         }
