@@ -186,7 +186,7 @@ namespace Blackjack.BotPlayer
                 case >= 1: return baseBet.ToString("F0");
                 case <= 0: return "10";
             }
-            ;
+
         }
     }
 }
