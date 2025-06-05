@@ -57,7 +57,7 @@ namespace Blackjack
             }
 
             // Creating starting balance
-                double balance = 1000;
+            double balance = 1000;
 
             // Creating deck pattern (4 suits 13 cards each)
             List<string> deckPattern = Card.FillDeckPattern();
